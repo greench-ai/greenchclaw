@@ -52,7 +52,6 @@ export {
   listFacts,
   deleteFact,
   countFacts,
-  cosineSimilarity,
   generateFactId,
   type AgentFact,
   type FactSearchResult,

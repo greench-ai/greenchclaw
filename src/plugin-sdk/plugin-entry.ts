@@ -280,7 +280,7 @@ export function makeTool<
   name: string;
   description: string;
   parameters: TParams;
-  execute: NonNullable<unknown>;
+  execute: unknown;
 } {
   return { name, description, parameters, execute } as unknown as {
     name: string;

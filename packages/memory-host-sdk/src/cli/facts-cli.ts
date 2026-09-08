@@ -49,7 +49,7 @@ async function cmdExtract(
 
   // Store facts in DB
   const sqlite = requireNodeSqlite();
-  const db = sqlite.open(DB_PATH);
+  const db = new sqlite.DatabaseSync(DB_PATH);
   ensureMemoryIndexSchema({
     db,
     embeddingCacheTable: "embedding_cache",
@@ -85,7 +85,7 @@ async function cmdSearch(
   opts: { agent_id?: string; session_id?: string; user_id?: string; limit?: number },
 ) {
   const sqlite = requireNodeSqlite();
-  const db = sqlite.open(DB_PATH);
+  const db = new sqlite.DatabaseSync(DB_PATH);
 
   const results = searchFacts({
     db,
@@ -107,7 +107,7 @@ async function cmdList(opts: {
   limit?: number;
 }) {
   const sqlite = requireNodeSqlite();
-  const db = sqlite.open(DB_PATH);
+  const db = new sqlite.DatabaseSync(DB_PATH);
 
   const facts = listFacts({
     db,
@@ -123,7 +123,7 @@ async function cmdList(opts: {
 
 async function cmdCount(opts: { agent_id?: string }) {
   const sqlite = requireNodeSqlite();
-  const db = sqlite.open(DB_PATH);
+  const db = new sqlite.DatabaseSync(DB_PATH);
 
   const count = countFacts({ db, agent_id: opts.agent_id });
   db.close();
